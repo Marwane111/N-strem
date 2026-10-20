@@ -1,0 +1,28 @@
+{
+  "name": "titan",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Movie and TV discovery application with TMDB metadata, VidSrc availability integration, authorized external playback, secure accounts and personal watchlists.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^22.13.0 || ^24.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test --test-concurrency=1 tests/validation.test.js tests/auth-library.test.js tests/providers.test.js",
+    "test:validation": "node --test tests/validation.test.js",
+    "test:auth": "node --test --test-concurrency=1 tests/auth-library.test.js",
+    "test:providers": "node --test tests/providers.test.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.0.0",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.7.1",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0"
+  }
+}

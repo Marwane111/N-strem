@@ -14,3 +14,30 @@
   "theme_color": "#101012",
   "icons": []
 }
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#25151f"/>
+      <stop offset="100%" stop-color="#09090d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff557b"/>
+      <stop offset="100%" stop-color="#b51e4b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <path d="M115 92h42v142l116-142h53L210 222l124 198h-52L180 254l-23 26v140h-42z"
+        fill="#ffffff"/>
+
+  <path d="M310 278l87 63-87 63z" fill="url(#accent)"/>
+
+  <circle cx="365" cy="145" r="36" fill="url(#accent)"/>
+  <path d="M348 145h34M365 128v34"
+        stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+
+  <path d="M112 448h288" stroke="#ff557b" stroke-width="8"
+        stroke-linecap="round" opacity=".85"/>
+</svg>

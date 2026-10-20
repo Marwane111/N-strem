@@ -1,20 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>In-Strem</title>
-    <style>
-        body { font-family: sans-serif; background: #141414; color: white; margin: 0; }
-        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; padding: 20px; }
-        .movie-card img { width: 100%; border-radius: 8px; }
-        .movie-card a { color: white; text-decoration: none; font-size: 14px; text-align: center; }
-    </style>
-</head>
-<body>
-    <h1>In-Strem Trending</h1>
-    <div class="movie-grid"></div>
-    <script src="script.js"></script>
-</body>
-</html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101014">
+  <meta name="description" content="Discover Korean dramas, films, and stories with KOREANSTREAM.">
 
+  <title>KOREANSTREAM — Korean Stories, One Destination</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home" aria-label="KOREANSTREAM Home">
+        KOREAN<span>STREAM</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#trending">Trending</a>
+        <a class="nav-link" href="#dramas">K-Dramas</a>
+        <a class="nav-link" href="#movies">Movies</a>
+        <a class="nav-link" href="#genres">Genres</a>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          id="search-toggle"
+          type="button"
+          aria-label="Open search"
+          aria-expanded="false"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8"></circle>
+            <path d="m16 16 4.5 4.5"></path>
+          </svg>
+        </button>
+
+        <a class="profile-button" href="#my-list" aria-label="My list and profile">K</a>
+      </div>
+    </div>
+
+    <form class="search-panel" id="search-panel" role="search" hidden>
+      <label class="visually-hidden" for="search-input">Search titles</label>
+      <input
+        id="search-input"
+        name="q"
+        type="search"
+        placeholder="Search Korean dramas and movies..."
+        autocomplete="off"
+      >
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-backdrop" id="hero-backdrop" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow" id="hero-eyebrow">
+          YOUR NEXT OBSESSION STARTS HERE
+        </p>
+
+        <h1 id="hero-title">Stories That Stay With You</h1>
+
+        <p class="hero-description" id="hero-description">
+          Discover unforgettable Korean dramas, captivating films,
+          and stories worth staying up for.
+        </p>
+
+        <div class="hero-meta" id="hero-meta">
+          <span>Korean Entertainment</span>
+          <span class="meta-dot" aria-hidden="true"></span>
+          <span>Drama · Romance · Thriller</span>
+        </div>
+
+        <div class="hero-actions">
+          <button class="button button-primary" id="hero-watch" type="button" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m8 5 11 7-11 7z"></path>
+            </svg>
+            Watch Now
+          </button>
+
+          <button class="button button-secondary" id="hero-info" type="button" disabled>
+            More Info
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-pagination" id="hero-pagination" aria-label="Featured titles"></div>
+    </section>
+
+    <section
+      class="content-section"
+      id="continue-watching"
+      aria-labelledby="continue-title"
+      hidden
+    >
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">PICK UP WHERE YOU LEFT OFF</p>
+          <h2 id="continue-title">Continue Watching</h2>
+        </div>
+      </div>
+
+      <div class="poster-row" id="continue-row"></div>
+    </section>
+
+    <section class="content-section" id="trending" aria-labelledby="trending-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">WHAT EVERYONE IS WATCHING</p>
+          <h2 id="trending-title">Trending Now</h2>
+        </div>
+
+        <a class="section-link" href="#all-content">
+          Explore all <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="poster-row" id="trending-row" aria-live="polite">
+        <p class="loading-message">Discovering trending titles...</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="dramas" aria-labelledby="dramas-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">YOUR NEXT FAVORITE STORY</p>
+          <h2 id="dramas-title">K-Dramas</h2>
+        </div>
+
+        <a class="section-link" href="#all-content">
+          View collection <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="poster-row" id="dramas-row" aria-live="polite">
+        <p class="loading-message">Loading Korean dramas...</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="movies" aria-labelledby="movies-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">MADE FOR MOVIE NIGHTS</p>
+          <h2 id="movies-title">Korean Movies</h2>
+        </div>
+
+        <a class="section-link" href="#all-content">
+          View collection <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="poster-row" id="movies-row" aria-live="polite">
+        <p class="loading-message">Loading Korean movies...</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="my-list" aria-labelledby="my-list-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">SAVED FOR YOUR NEXT NIGHT IN</p>
+          <h2 id="my-list-title">My List</h2>
+        </div>
+      </div>
+
+      <div class="poster-row" id="my-list-row">
+        <p class="empty-message">
+          Your list is waiting. Add a title you love and find it here.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section genre-section" id="genres" aria-labelledby="genres-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">FIND YOUR KIND OF STORY</p>
+          <h2 id="genres-title">Explore by Genre</h2>
+        </div>
+      </div>
+
+      <div class="genre-grid" id="genre-grid">
+        <button class="genre-card" type="button" data-genre="Romance">
+          <span>Romance</span><span aria-hidden="true">↗</span>
+        </button>
+        <button class="genre-card" type="button" data-genre="Thriller">
+          <span>Thriller</span><span aria-hidden="true">↗</span>
+        </button>
+        <button class="genre-card" type="button" data-genre="Drama">
+          <span>Drama</span><span aria-hidden="true">↗</span>
+        </button>
+        <button class="genre-card" type="button" data-genre="Comedy">
+          <span>Comedy</span><span aria-hidden="true">↗</span>
+        </button>
+        <button class="genre-card" type="button" data-genre="Action">
+          <span>Action</span><span aria-hidden="true">↗</span>
+        </button>
+        <button class="genre-card" type="button" data-genre="Mystery">
+          <span>Mystery</span><span aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </section>
+
+    <section
+      class="content-section all-content-section"
+      id="all-content"
+      aria-labelledby="all-content-title"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">THE COLLECTION</p>
+          <h2 id="all-content-title">Explore Everything</h2>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <label class="visually-hidden" for="content-type">Content type</label>
+        <select id="content-type">
+          <option value="all">All titles</option>
+          <option value="movie">Movies</option>
+          <option value="tv">TV series</option>
+        </select>
+
+        <label class="visually-hidden" for="sort-content">Sort titles</label>
+        <select id="sort-content">
+          <option value="popular">Recommended</option>
+          <option value="newest">Recently added</option>
+          <option value="rating">Highest rated</option>
+        </select>
+      </div>
+
+      <div class="poster-grid" id="all-content-grid" aria-live="polite">
+        <p class="loading-message">Preparing your collection...</p>
+      </div>
+
+      <button class="button button-secondary load-more-button" id="load-more" type="button" hidden>
+        Load More
+      </button>
+    </section>
+
+    <section class="status-message" id="app-status" role="status" aria-live="polite" hidden></section>
+  </main>
+
+  <dialog class="title-dialog" id="title-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" id="dialog-close" type="button" aria-label="Close details">×</button>
+
+    <div class="dialog-backdrop" id="dialog-backdrop"></div>
+
+    <div class="dialog-content">
+      <p class="section-kicker" id="dialog-kicker">KOREANSTREAM ORIGINAL DISCOVERY</p>
+      <h2 id="dialog-title">Title details</h2>
+      <p class="dialog-meta" id="dialog-meta"></p>
+      <p class="dialog-description" id="dialog-description"></p>
+
+      <div class="dialog-actions">
+        <button class="button button-primary" id="dialog-watch" type="button">
+          Watch Now
+        </button>
+        <button class="button button-secondary" id="dialog-save" type="button">
+          Add to My List
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="player-dialog" id="player-dialog" aria-label="Video player">
+    <div class="player-header">
+      <div>
+        <p class="section-kicker">NOW PLAYING</p>
+        <h2 id="player-title">Now Playing</h2>
+      </div>
+
+      <button class="dialog-close" id="player-close" type="button" aria-label="Close player">
+        ×
+      </button>
+    </div>
+
+    <div class="player-frame-wrap" id="player-frame-wrap">
+      <p class="player-placeholder">Select a title to begin watching.</p>
+    </div>
+
+    <div class="player-footer">
+      <p id="player-note">
+        Playback availability and subtitle options depend on the selected source.
+      </p>
+      <button class="button button-secondary" id="player-next" type="button" hidden>
+        Next Episode
+      </button>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#home">KOREAN<span>STREAM</span></a>
+
+    <p class="footer-tagline">Korean stories. Unforgettable nights.</p>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#home">Home</a>
+      <a href="#genres">Genres</a>
+      <a href="#my-list">My List</a>
+      <a href="#all-content">Explore</a>
+    </nav>
+
+    <p class="footer-note">
+      KOREANSTREAM is an independent discovery interface.
+      Content availability depends on the configured providers.
+    </p>
+
+    <p class="copyright">
+      © <span id="current-year">2026</span> KOREANSTREAM. All rights reserved.
+    </p>
+  </footer>
+</body>
+            </html>

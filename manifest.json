@@ -1,0 +1,16 @@
+
+{
+  "id": "./",
+  "name": "KOREANSTREAM",
+  "short_name": "KSTREAM",
+  "description": "Discover Korean dramas and movies in one destination.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#101012",
+  "theme_color": "#101012",
+  "icons": []
+}

@@ -1,0 +1,123 @@
+
+# ==================================================
+# Dependencies
+# ==================================================
+
+node_modules/
+
+
+# ==================================================
+# Environment variables and API credentials
+# Keep the example configuration trackable.
+# ==================================================
+
+.env
+.env.*
+!.env.example
+
+.envrc
+.npmrc
+
+
+# ==================================================
+# Local database files
+# Keep SQL schema and migration source files trackable.
+# ==================================================
+
+*.sqlite
+*.sqlite3
+*.db
+
+*.sqlite-*
+*.sqlite3-*
+*.db-*
+
+/database/data/
+/data/
+/backups/
+
+
+# ==================================================
+# Logs and runtime files
+# ==================================================
+
+/logs/
+
+*.log
+*.log.*
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+*.pid
+*.pid.lock
+*.seed
+
+
+# ==================================================
+# Test and coverage output
+# ==================================================
+
+/coverage/
+/.nyc_output/
+/test-results/
+/playwright-report/
+
+*.lcov
+
+
+# ==================================================
+# Build output and caches
+# ==================================================
+
+/dist/
+/build/
+/.cache/
+/.parcel-cache/
+/.eslintcache
+/.npm/
+
+
+# ==================================================
+# Temporary files
+# ==================================================
+
+/tmp/
+/temp/
+
+*.tmp
+*.temp
+*.swp
+*.swo
+
+*~
+
+
+# ==================================================
+# Operating system files
+# ==================================================
+
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+
+# ==================================================
+# Local editor configuration
+# ==================================================
+
+/.idea/
+/.vscode/
+
+*.code-workspace
+
+
+# ==================================================
+# Local deployment state
+# ==================================================
+
+/.vercel/
+/.netlify/
